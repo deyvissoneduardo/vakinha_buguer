@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/utils.dart';
+import 'package:get/get.dart';
 import 'package:vakinha_burguer_mobile/app/core/ui/widgets/vakinha_button.dart';
+import 'package:vakinha_burguer_mobile/app/routes/auth_routers.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -32,7 +33,8 @@ class SplashPage extends StatelessWidget {
                   VakinhaButton(
                     label: 'ACESSAR',
                     width: context.widthTransformer(reducedBy: 25),
-                    onpressed: () {},
+                    heigth: 60,
+                    onpressed: () => Get.offAndToNamed(AuthRouters.LOGIN_PAGE),
                   )
                 ],
               ),
