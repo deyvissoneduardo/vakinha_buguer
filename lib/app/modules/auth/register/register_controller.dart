@@ -23,7 +23,7 @@ class RegisterController extends GetxController with LoaderMixin, MessageMixin {
     messageListener(_message);
   }
 
-  Future<void> regiter({
+  Future<void> register({
     required String name,
     required String email,
     required String password,
