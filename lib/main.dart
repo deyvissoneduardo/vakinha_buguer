@@ -4,6 +4,8 @@ import 'package:vakinha_burguer_mobile/app/core/ui/vakinha_ui.dart';
 import 'package:vakinha_burguer_mobile/app/routes/auth_routers.dart';
 import 'package:vakinha_burguer_mobile/app/routes/splash_routers.dart';
 
+import 'app/core/bindings/aplication_bindings.dart';
+
 void main() {
   runApp(const VakinhaBuguerApp());
 }
@@ -16,6 +18,7 @@ class VakinhaBuguerApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Vakinha Burguer',
       theme: VakinhaUI.theme,
+      initialBinding: AplicationBindings(),
       getPages: [
         ...SplashRouters.routers,
         ...AuthRouters.routers,
