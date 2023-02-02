@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:vakinha_burguer_mobile/app/core/constants.dart';
 import 'package:vakinha_burguer_mobile/app/core/mixin/loader_mixin.dart';
 import 'package:vakinha_burguer_mobile/app/core/mixin/message_mixin.dart';
 import 'package:vakinha_burguer_mobile/app/core/rest_client/rest_client_execption.dart';
@@ -30,17 +32,11 @@ class RegisterController extends GetxController with LoaderMixin, MessageMixin {
   }) async {
     try {
       _loading.toggle();
-      await _authRepository.register(name, email, password);
+      final userLogged = await _authRepository.register(name, email, password);
       _loading.toggle();
-      _message(MessageModel(
-        title: 'Sucesso',
-        message: 'Cadastro realizado com sucesso',
-        type: MessageType.info,
-      ));
-      Get.back();
+      GetStorage().write(Constants.USER_KEY, userLogged.id);
     } on RestClientExecption catch (e, s) {
       _loading.toggle();
-
       log('error ao registra login', error: e, stackTrace: s);
       _message(MessageModel(
         title: 'Error',
@@ -49,7 +45,6 @@ class RegisterController extends GetxController with LoaderMixin, MessageMixin {
       ));
     } catch (e, s) {
       _loading.toggle();
-
       log('error ao registra usuario', error: e, stackTrace: s);
       _message(MessageModel(
         title: 'Error',
