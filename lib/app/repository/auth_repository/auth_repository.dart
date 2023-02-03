@@ -7,10 +7,10 @@ import 'package:vakinha_burguer_mobile/app/models/user_model.dart';
 
 import './i_auth_repository.dart';
 
-class AuthRepositoryImpl implements IAuthRepository {
+class AuthRepository implements IAuthRepository {
   final RestClient _restClient;
 
-  AuthRepositoryImpl({
+  AuthRepository({
     required RestClient restClient,
   }) : _restClient = restClient;
 

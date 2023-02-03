@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:vakinha_burguer_mobile/app/core/ui/formater_helper.dart';
 import 'package:vakinha_burguer_mobile/app/core/ui/vakinha_ui.dart';
+import 'package:vakinha_burguer_mobile/app/models/product_model.dart';
 
 class ProductTile extends StatelessWidget {
-  const ProductTile({Key? key}) : super(key: key);
+  final ProductModel productModel;
+  const ProductTile({Key? key, required this.productModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +19,14 @@ class ProductTile extends StatelessWidget {
           children: [
             Container(
               height: 80,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10.0),
                   bottomLeft: Radius.circular(10.0),
                 ),
                 image: DecorationImage(
                   image: NetworkImage(
-                      'https://www.exampledomain.com/images/background.jpg'),
+                      'http://dartweek.academiadoflutter.com.br/images${productModel.image}'),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -31,13 +34,16 @@ class ProductTile extends StatelessWidget {
             Expanded(
               child: Container(
                 color: Colors.white,
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text('X-TUDO', style: VakinhaUI.textBold,),
-                    Text(r'R$ 200,00'),
+                    Text(
+                      productModel.name,
+                      style: VakinhaUI.textBold,
+                    ),
+                    Text(FormaterHelper.formatCurrency(productModel.price)),
                   ],
                 ),
               ),
